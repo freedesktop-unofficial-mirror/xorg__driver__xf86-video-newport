@@ -1,7 +1,7 @@
 /* 
  * Id: newport_shadow.c,v 1.3 2000/11/29 20:58:10 agx Exp $
  */
-/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/newport/newport_shadow.c,v 1.3 2002/09/30 22:17:55 alanh Exp $ */
+/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/newport/newport_shadow.c,v 1.2 2001/11/23 19:50:45 dawes Exp $ */
 
 #include "newport.h"
 
@@ -52,7 +52,9 @@ NewportRefreshArea24(ScrnInfoPtr pScrn, int num, BoxPtr pbox)
 {
 	int dx, dy;
 	CARD8 *src, *base;
+#ifndef NEWPORT_USE32BPP	
 	CARD32 dest;
+#endif	
 	NewportPtr pNewport = NEWPORTPTR(pScrn);
 	NewportRegsPtr pNewportRegs = pNewport->pNewportRegs;
 
@@ -65,8 +67,13 @@ NewportRefreshArea24(ScrnInfoPtr pScrn, int num, BoxPtr pbox)
 					NPORT_DMODE0_CHOST);
 
 	while(num--) {
-		base = (CARD8*)pNewport->ShadowPtr + pbox->y1 * pNewport->ShadowPitch + pbox->x1 * 3;
-		
+
+		base = (CARD8*)pNewport->ShadowPtr + pbox->y1 * pNewport->ShadowPitch + pbox->x1 
+#ifdef NEWPORT_USE32BPP		
+		* 4;
+#else
+		* 3;
+#endif		
 		pNewportRegs->set.xystarti = (pbox->x1 << 16) | pbox->y1;
 		pNewportRegs->set.xyendi = ((pbox->x2-1) << 16) | (pbox->y2-1);
 		
@@ -76,9 +83,14 @@ NewportRefreshArea24(ScrnInfoPtr pScrn, int num, BoxPtr pbox)
 				/* Removing these shifts by using 32bpp fb
 				 * yields < 2% percent performance gain and wastes 25% memory 
 				 */
+#ifdef NEWPORT_USE32BPP
+				pNewportRegs->go.hostrw0 = *(CARD32 *)src;
+				src += 4;
+#else
 				dest = src[0] | src[1] << 8 | src[2] << 16;
 				pNewportRegs->go.hostrw0 = dest;	
 				src+=3;
+#endif				
  			}
 			base += pNewport->ShadowPitch;
  		}
