@@ -353,6 +353,9 @@ NewportPreInit(ScrnInfoPtr pScrn, int flags)
 	pNewport = NEWPORTPTR(pScrn);
 	pNewport->busID = busID;
 
+	pScrn->memPhysBase = 0;
+	pScrn->fbOffset = 0;
+	
 	/* We use a programmable clock */
 	pScrn->progClock = TRUE;
 
