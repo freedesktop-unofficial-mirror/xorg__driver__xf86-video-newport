@@ -80,7 +80,7 @@ static void NewportUnmapRegs(ScrnInfoPtr pScrn);
 static Bool NewportProbeCardInfo(ScrnInfoPtr pScrn);
 /* ------------------------------------------------------------------ */
 
-DriverRec NEWPORT = {
+_X_EXPORT DriverRec NEWPORT = {
         VERSION,
 	NEWPORT_DRIVER_NAME,
         NewportIdentify,
@@ -147,7 +147,11 @@ static XF86ModuleVersionInfo newportVersRec =
 	{0,0,0,0}
 };
 
-XF86ModuleData newportModuleData = { &newportVersRec, newportSetup, NULL };
+_X_EXPORT XF86ModuleData newportModuleData = {
+	&newportVersRec,
+	newportSetup,
+	NULL
+};
 
 static pointer
 newportSetup(pointer module, pointer opts, int *errmaj, int *errmin)
