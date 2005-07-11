@@ -1,7 +1,11 @@
 /*
  * newport_cursor.c
  */
-/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/newport/newport_cursor.c,v 1.1 2002/12/10 04:03:00 dawes Exp $ */
+/* $XFree86$ */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #include "newport.h"
 #include "cursorstr.h"

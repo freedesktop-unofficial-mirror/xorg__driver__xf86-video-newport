@@ -32,6 +32,10 @@
  */
 /* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/newport/newport_driver.c,v 1.25 2003/04/23 21:51:41 tsi Exp $ */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 /* function prototypes, common data structures & generic includes */
 #include "newport.h"
 
