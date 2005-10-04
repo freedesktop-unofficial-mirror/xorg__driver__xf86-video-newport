@@ -24,8 +24,6 @@ SUBDIRS = src man
 if BUILD_LINUXDOC
 README: README.sgml
 	$(MAKE_TEXT) README.sgml && mv README.txt README
-
-EXTRA_DIST += README.sgml
 endif
 
-EXTRA_DIST = XF86Config.indy
+EXTRA_DIST = XF86Config.indy README.sgml
