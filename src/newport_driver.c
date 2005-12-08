@@ -124,7 +124,7 @@ static const char *shadowSymbols[] = {
 static const char *xaaSymbols[] = {
     "XAACreateInfoRec",
     "XAADestroyInfoRec",
-    "XAAFallbackOps",
+    "XAAGetFallbackOps",
     "XAAInit",
     NULL
 };

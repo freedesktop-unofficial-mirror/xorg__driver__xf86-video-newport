@@ -1253,7 +1253,7 @@ NewportValidatePolyPoint(GCPtr pGC,
     }
     else
     {
-	pGC->ops->PolyPoint = XAAFallbackOps.PolyPoint;
+	pGC->ops->PolyPoint = XAAGetFallbackOps()->PolyPoint;
     }
 }
 
@@ -1312,8 +1312,8 @@ NewportValidatePolyArc(GCPtr pGC,
     }
     else
     {
-	pGC->ops->PolyPoint = XAAFallbackOps.PolyPoint;
-	pGC->ops->PolyArc = XAAFallbackOps.PolyArc;
+	pGC->ops->PolyPoint = XAAGetFallbackOps()->PolyPoint;
+	pGC->ops->PolyArc = XAAGetFallbackOps()->PolyArc;
     }
 }
 
