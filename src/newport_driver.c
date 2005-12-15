@@ -61,7 +61,7 @@
 #define NEWPORT_DRIVER_NAME	"newport"
 #define NEWPORT_MAJOR_VERSION	0
 #define NEWPORT_MINOR_VERSION	1	
-#define NEWPORT_PATCHLEVEL	3
+#define NEWPORT_PATCHLEVEL	4
 
 
 /* Prototypes ------------------------------------------------------- */
