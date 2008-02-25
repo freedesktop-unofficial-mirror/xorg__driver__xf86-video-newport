@@ -593,11 +593,14 @@ NewportScreenInit(int index, ScreenPtr pScreen, int argc, char **argv)
 	pNewport->NoAccel = FALSE;
 	if (xf86ReturnOptValBool(pNewport->Options, OPTION_NOACCEL, FALSE)) 
 	{
-	    if (!xf86LoadSubModule(pScrn, "xaa"))
-		return FALSE;
-	    xf86LoaderReqSymLists(xaaSymbols, NULL);
 	    pNewport->NoAccel = TRUE;
 	    xf86DrvMsg(pScrn->scrnIndex, X_CONFIG, "Acceleration disabled\n");
+	}
+	if (!pNewport->NoAccel) {
+	    if (!xf86LoadSubModule(pScrn, "xaa"))
+		pNewport->NoAccel = TRUE;
+	    else
+		xf86LoaderReqSymLists(xaaSymbols, NULL);
 	}
 #if 0    
 	if (pScrn->bitsPerPixel < 24)
