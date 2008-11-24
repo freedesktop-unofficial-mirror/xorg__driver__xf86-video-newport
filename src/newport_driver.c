@@ -1,6 +1,4 @@
 /*
- * Id: newport_driver.c,v 1.2 2000/11/29 20:58:10 agx Exp $ 
- *
  * Driver for the SGI Indy's Newport graphics card
  * 
  * This driver is based on the newport.c & newport_con.c kernel code
@@ -30,7 +28,6 @@
  * Project.
  *
  */
-/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/newport/newport_driver.c,v 1.25 2003/04/23 21:51:41 tsi Exp $ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -272,17 +269,13 @@ NewportProbe(DriverPtr drv, int flags)
 					int entity;
 					ScrnInfoPtr pScrn = NULL;
 
-					/* This is a hack because don't have the RAC info(and don't want it).  
-					 * Set it as an ISA entity to get the entity field set up right.
-					 */
-					entity = xf86ClaimIsaSlot(drv, 0, dev, TRUE);
+					entity = xf86ClaimNoSlot(drv, 0, dev, TRUE);
 					base = (NEWPORT_BASE_ADDR0
 						+ busID * NEWPORT_BASE_OFFSET);
 					RANGE(range[0], base, base + sizeof(NewportRegs),\
 							ResExcMemBlock);
-					pScrn = xf86ConfigIsaEntity(pScrn, 0, entity, NULL, range, \
-							NULL, NULL, NULL, NULL);
-					/* Allocate a ScrnInfoRec */
+					pScrn = xf86AllocateScreen(drv, 0);
+					xf86AddEntityToScreen(pScrn, entity);
 					pScrn->driverVersion = NEWPORT_VERSION;
 					pScrn->driverName    = NEWPORT_DRIVER_NAME;
 					pScrn->name          = NEWPORT_NAME;
