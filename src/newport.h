@@ -23,7 +23,10 @@
 #include "xf86.h"
 #include "xf86_OSproc.h"
 #include "compiler.h"
+
+#ifndef XSERVER_LIBPCIACCESS
 #include "xf86Resources.h"
+#endif
 
 #include "xf86cmap.h"
 
