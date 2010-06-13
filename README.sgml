@@ -1,13 +1,11 @@
 <!DOCTYPE linuxdoc PUBLIC "-//Xorg//DTD linuxdoc//EN" [
-<!ENTITY % defs SYSTEM "defs.ent"> %defs;
+<!ENTITY % defs SYSTEM "X11/defs.ent"> %defs;
 ]>
 
 <article>
 <title>Information for newport Users
 <author>Guido G&uuml;nther
 <date>24 February 2003
-<ident>
-</ident>
 <toc>
 
 <sect>Supported Hardware
@@ -54,17 +52,17 @@ However, if you have problems with auto-detection, you can specify:
 <sect>Authors
 <p>
 <itemize>
-  <item>Guido Guenther <email>agx@sigxcpu.org</email>
+  <item>Guido Guenther <url url="mailto:agx@sigxcpu.org">
 </itemize>
 
 
 <sect>Acknowledgements
 <p>
 <itemize>
-  <item>Gleb O. Raiko <email>raiko@niisi.msk.ru</email> for getting the beast to build
-  <item>Ralf Baechle <email>ralf@oss.sgi.com</email> for his patience...
-  <item>Ulf Carlsson <email>ulfc@calypso.engr.sgi.com</email> for comments and elf loader code
-  <item>Nina A. Podolskaya <email>nap@niisi.msk.ru</email> for elf loader code
+  <item>Gleb O. Raiko <url url="mailto:raiko@niisi.msk.ru"> for getting the beast to build
+  <item>Ralf Baechle <url url="mailto:ralf@oss.sgi.com"> for his patience...
+  <item>Ulf Carlsson <url url="mailto:ulfc@calypso.engr.sgi.com"> for comments and elf loader code
+  <item>Nina A. Podolskaya <url url="mailto:nap@niisi.msk.ru"> for elf loader code
   <item>all the guys who wrote the newport_con linux kernel code
 </itemize>
 
