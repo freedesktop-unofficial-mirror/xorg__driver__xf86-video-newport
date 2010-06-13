@@ -21,12 +21,7 @@
 SUBDIRS = src man
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
-if BUILD_LINUXDOC
-README: README.sgml
-	$(MAKE_TEXT) README.sgml && mv README.txt README
-endif
-
-EXTRA_DIST = XF86Config.indy README.sgml
+EXTRA_DIST = XF86Config.indy
 
 .PHONY: ChangeLog INSTALL
 
