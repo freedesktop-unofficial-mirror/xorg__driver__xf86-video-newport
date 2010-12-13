@@ -189,7 +189,7 @@ NewportFreeRec(ScrnInfoPtr pScrn)
 {
 	if (pScrn->driverPrivate == NULL)
 		return TRUE;
-	xfree(pScrn->driverPrivate);
+	free(pScrn->driverPrivate);
 	pScrn->driverPrivate = NULL;
 	return TRUE;
 }
@@ -255,7 +255,7 @@ NewportProbe(DriverPtr drv, int flags)
 			}
 		}
 	}
-	xfree(devSections);
+	free(devSections);
 	return foundScreen;
 }
 
@@ -354,7 +354,7 @@ NewportPreInit(ScrnInfoPtr pScrn, int flags)
 
 	/* Fill in pScrn->options) */
 	xf86CollectOptions(pScrn, NULL);
-	if (!(pNewport->Options = xalloc(sizeof(NewportOptions))))
+	if (!(pNewport->Options = malloc(sizeof(NewportOptions))))
 		return FALSE;
 	memcpy(pNewport->Options, NewportOptions, sizeof(NewportOptions));
 	xf86ProcessOptions(pScrn->scrnIndex, pScrn->options, pNewport->Options);
@@ -655,7 +655,7 @@ NewportCloseScreen(int scrnIndex, ScreenPtr pScreen)
 
 	NewportRestore(pScrn, TRUE);
 	if (pNewport->ShadowPtr)
-		xfree(pNewport->ShadowPtr);
+		free(pNewport->ShadowPtr);
 
 	/* unmap the Newport's registers from memory */
 	NewportUnmapRegs(pScrn);
