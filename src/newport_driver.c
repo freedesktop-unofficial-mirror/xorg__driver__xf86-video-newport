@@ -187,8 +187,6 @@ NewportGetRec(ScrnInfoPtr pScrn)
 static Bool
 NewportFreeRec(ScrnInfoPtr pScrn)
 {
-	if (pScrn->driverPrivate == NULL)
-		return TRUE;
 	free(pScrn->driverPrivate);
 	pScrn->driverPrivate = NULL;
 	return TRUE;
@@ -654,8 +652,7 @@ NewportCloseScreen(int scrnIndex, ScreenPtr pScreen)
 #endif	
 
 	NewportRestore(pScrn, TRUE);
-	if (pNewport->ShadowPtr)
-		free(pNewport->ShadowPtr);
+	free(pNewport->ShadowPtr);
 
 	/* unmap the Newport's registers from memory */
 	NewportUnmapRegs(pScrn);
